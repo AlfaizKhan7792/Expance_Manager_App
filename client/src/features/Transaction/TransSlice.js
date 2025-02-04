@@ -12,7 +12,7 @@ const TransSlice = createSlice({
     },
     reducers: {
         Remove: (state, action) => {
-            state.All_Trans = state?.All_Trans?.filter(trans => trans?._id !== action.payload);
+            state.All_Trans = state?.All_Trans?.transactions?.filter(trans => trans?._id !== action.payload);
         },
     },
     extraReducers: (builder) => {

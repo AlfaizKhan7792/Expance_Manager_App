@@ -36,7 +36,7 @@ const TotalIncome = ({incomeList}) => {
                 Edit
               </button>
               <button
-              onClick={() => handleDelete(item._id)}
+              onClick={() => handleDelete(index._id)}
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
               >
                 Delete
