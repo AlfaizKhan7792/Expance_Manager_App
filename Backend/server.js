@@ -34,10 +34,10 @@ app.use("/api/trans" , require("./routes/AddTransaction/AddTransactionRoutes"))
 if(process.env.NODE_ENV === "production"){
     const __dirname = path.resolve()
 app.use("/uploads" , express.static("/var/data/uploads"))
-app.use(express.static(path.resolve(__dirname, "/Client/dist")))
+app.use(express.static(path.resolve(__dirname, "/client/dist")))
 
 app.get("*", (req,res) =>
-    res.sendFile(path.resolve(__dirname, "Client", "dist", "index.html"))
+    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
 );
 }else{
     const __dirname = path.resolve()

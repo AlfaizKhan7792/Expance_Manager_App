@@ -5,9 +5,9 @@
   "scripts": {
     "main": "node Backend/server.js",
     "dev": "nodemon Backend/server.js",
-    "lit": "npm run dev --prefix Client",
+    "lit": "npm run dev --prefix client",
     "start": "concurrently \"npm run dev\" \"npm run lit\"",  
-    "build": "npm install && npm install --prefix cd Client && npm run build --prefix cd Client"
+    "build": "npm install && npm install --prefix cd client && npm run build --prefix cd client"
   },
   "author": "",
   "license": "ISC",
