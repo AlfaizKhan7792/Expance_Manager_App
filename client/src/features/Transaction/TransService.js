@@ -12,7 +12,6 @@ const options = {
 }
 const response = await axios.post(API_URL , finalData , options)
 localStorage.setItem("Auth" , JSON.stringify(response.data))
-// console.log(response.data);
 return await response.data
 }
 
@@ -28,7 +27,7 @@ export const FetchTrans = async (token) =>{
     }
     const response = await axios.get(`/api/trans/user-data` , options)
     localStorage.setItem("Auth" , JSON.stringify(response.data))
-    console.log(response.data);
+    // console.log(response.data);
     return await response.data
     } catch (error) {
         console.log(error);
@@ -36,13 +35,30 @@ export const FetchTrans = async (token) =>{
 }
 
 // Update Transaction
-export const update = async (id , token) =>{
-    let options = {
+const update = async (_id , token) =>{
+    const options = {
         headers : {
 authorization : `Bearer ${token}`
         }
     }
-    const response = await axios.put(`${API_URL}/${id}` , options)
+    const response = await axios.put(`${API_URL}/${_id}` , options)
     localStorage.setItem("Auth" , JSON.stringify(response.data))
     return await response.data
 }
+
+
+// Remove Transaction
+export const deleteTransaction = async (id , token) =>{
+    console.log(id, "sdjf;sakdfjoij");
+    const options = {
+        headers : {
+            authorization : `Bearer ${token}`
+        }
+    }
+    const response = await axios.delete(`${API_URL}/${id}`, options)
+    return await response.data
+}
+
+const transService = {deleteTransaction, update}
+export default transService
+

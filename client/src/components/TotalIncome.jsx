@@ -1,13 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Remove, RemoveTran } from "../features/Transaction/TransSlice";
+import { DeleteTrans, Remove } from "../features/Transaction/TransSlice";
 
 const TotalIncome = ({incomeList}) => {
   const dispatch = useDispatch()
 
-  const handleDelete = (_id) =>{
-    dispatch(Remove(_id))
-    RemoveTran(_id)
+  const handleDelete = (id) =>{
+    console.log(id);
+    dispatch(DeleteTrans(id))
+    dispatch(Remove(id))
   }
 
   if(incomeList.length === 0){
@@ -36,7 +37,7 @@ const TotalIncome = ({incomeList}) => {
                 Edit
               </button>
               <button
-              onClick={() => handleDelete(index._id)}
+              onClick={() => handleDelete(item._id)}
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
               >
                 Delete

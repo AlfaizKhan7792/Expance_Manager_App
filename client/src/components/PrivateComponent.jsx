@@ -8,7 +8,7 @@ const PrivateComponent = () => {
     const {LoggedIn , CheckStatus} = useAuthStatus()
 
     if(CheckStatus){
-<LoadingPage />
+return <LoadingPage />
     }
 
     return LoggedIn ? <Outlet /> : <Navigate to={"/login"} />

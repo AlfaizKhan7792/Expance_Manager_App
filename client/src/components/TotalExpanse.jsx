@@ -1,6 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { DeleteTrans, Remove } from "../features/Transaction/TransSlice";
 
 const TotalExpanse = ({expanceList}) => {
+  const dispatch = useDispatch()
+
+  const handleDelete = (id) =>{
+    dispatch(DeleteTrans(id))
+    dispatch(Remove(id))
+  }
   
 
   if(expanceList.length === 0){
@@ -30,6 +38,7 @@ const TotalExpanse = ({expanceList}) => {
                 Edit
               </button>
               <button
+              onClick={() => handleDelete(expense._id)}
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
                 
               >

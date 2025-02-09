@@ -11,11 +11,13 @@ import Navbar from './components/Navbar'
 import { ToastContainer } from 'react-toastify'
 import PrivateComponent from './components/PrivateComponent'
 import PageNotFound from './pages/PageNotFound'
+import AutoLogout from './components/AutoLogout'
 
 const App = () => {
   return (
     <Router>
 <Navbar />
+<AutoLogout />
       <Routes>
         <Route path='*' element={<PageNotFound />} />
       <Route path='/' element={<PrivateComponent />}>
@@ -26,12 +28,7 @@ const App = () => {
       </Route>
 <Route path='/login' element={<LoginPage />} />
 <Route path='/register' element={<RegisterPage />} />
-
-      </Routes>
-     
-     
-     
-     
+      </Routes>     
      {/* <LoadingPage /> */}
      <ToastContainer />
     </Router>

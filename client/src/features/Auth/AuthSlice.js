@@ -88,6 +88,7 @@ export const LoginUser = createAsyncThunk('AUTH/LOGIN' , async (formData , thunk
 
 
 // LogOut User Thunk
-export const LogoutUser = createAsyncThunk('AUTH/LOGOUT' , () =>{
+export const LogoutUser = createAsyncThunk('AUTH/LOGOUT' , (_, thunkAPI) =>{
 localStorage.removeItem("user")
+return thunkAPI.fulfillWithValue(null)
 })

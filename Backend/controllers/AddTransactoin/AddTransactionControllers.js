@@ -114,11 +114,11 @@ const GetUserData = expressAsyncHandler(async (req, res) => {
 
 
 // Remove Transaction
-const RemoveTrans = expressAsyncHandler(async (req,res) =>{
+const RemoveTrans = expressAsyncHandler(async (req, res) => {
     try {
         const transaction = await Trans.findByIdAndDelete(req.params.id);
 
-        if (!transaction && transaction.length === 0) {
+        if (!transaction) {
             return res.status(404).json({ message: "Transaction not found!!!" });
         }
 
@@ -127,7 +127,7 @@ const RemoveTrans = expressAsyncHandler(async (req,res) =>{
         console.error("Error deleting transaction:", error);
         res.status(500).json({ message: "Server error", error: error.message });
     }
-})
+});
 
 
 module.exports = { AddTrans , UpdateTrans , GetUserData , RemoveTrans };

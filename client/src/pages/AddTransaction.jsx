@@ -62,20 +62,21 @@ const AddTransaction = () => {
   };
 
   useEffect(() =>{
+
+    if(All_Trans && isSuccess){
+      navigate("/view-details")    
+    }
+
     if(isErorr && message){
       toast.error(message)
     }
   
-  },[isErorr , message])
+  },[All_Trans , isSuccess, isErorr , message])
 
   if(isLoading){
     return <LoadingPage />
   }
-//  useEffect(() => {
-//   if(All_Trans && isSuccess){
-//     navigate("/view-details")    
-//   }
-//  }, [All_Trans , isSuccess]);
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFFFF0] to-[#666666] flex items-center justify-center">
       <div className="w-full max-w-md bg-[#FFFFF0] p-8 rounded-xl shadow-xl">
