@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { DeleteTrans, Remove } from "../features/Transaction/TransSlice";
+import { DeleteTrans, Remove, UpdateTrans } from "../features/Transaction/TransSlice";
 
 const TotalExpanse = ({expanceList}) => {
   const dispatch = useDispatch()
@@ -8,6 +8,10 @@ const TotalExpanse = ({expanceList}) => {
   const handleDelete = (id) =>{
     dispatch(DeleteTrans(id))
     dispatch(Remove(id))
+  }
+
+  const handleEdit = (id) =>{
+    dispatch(UpdateTrans(id))
   }
   
 
@@ -32,6 +36,7 @@ const TotalExpanse = ({expanceList}) => {
             </div>
             <div className="space-x-2">
               <button
+              onClick={() => handleEdit(expense._id)}
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
                 
               >

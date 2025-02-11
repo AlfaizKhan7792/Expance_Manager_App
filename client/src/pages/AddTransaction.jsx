@@ -70,6 +70,9 @@ const AddTransaction = () => {
     if(isErorr && message){
       toast.error(message)
     }
+
+    setTransaction()
+
   
   },[All_Trans , isSuccess, isErorr , message])
 
@@ -99,7 +102,7 @@ const AddTransaction = () => {
               type="text"
               id="name"
               name="name"
-              value={transaction.name}
+              value={transaction?.name}
               onChange={handleTransactionChange}
               placeholder="Enter transaction name"
               className="w-full px-4 py-2 rounded-lg border border-[#666666] bg-[#FFFFF0] focus:outline-none focus:ring-2 focus:ring-[#800020] transition"
@@ -119,7 +122,7 @@ const AddTransaction = () => {
               type="number"
               id="amount"
               name="amount"
-              value={transaction.amount}
+              value={transaction?.amount}
               onChange={handleTransactionChange}
               placeholder="Enter amount"
               className="w-full px-4 py-2 rounded-lg border border-[#666666] bg-[#FFFFF0] focus:outline-none focus:ring-2 focus:ring-[#800020] transition"
@@ -128,8 +131,8 @@ const AddTransaction = () => {
           </div>
 
           <span className="flex gap-5 border rounded-md px-3">
-            <p>{extraDetails.category1}</p>
-            <p>{extraDetails.type}</p>
+            <p>{extraDetails?.category1}</p>
+            <p>{extraDetails?.type}</p>
           </span>
 
           {/* Button to open Second Form */}
@@ -175,7 +178,7 @@ const AddTransaction = () => {
                   type="text"
                   id="category1"
                   name="category1"
-                  value={extraDetails.category1}
+                  value={extraDetails?.category1}
                   onChange={handleExtraDetailsChange}
                   placeholder="Enter transaction type"
                   className="w-full px-4 py-2 rounded-lg border border-[#666666] bg-[#FFFFF0] focus:outline-none focus:ring-2 focus:ring-[#800020] transition"
@@ -194,7 +197,7 @@ const AddTransaction = () => {
                 <select
                   id="type"
                   name="type"
-                  value={extraDetails.type}
+                  value={extraDetails?.type}
                   onChange={handleExtraDetailsChange}
                   className="w-full px-4 py-2 rounded-lg border border-[#666666] bg-[#FFFFF0] focus:outline-none focus:ring-2 focus:ring-[#800020] transition"
                 >

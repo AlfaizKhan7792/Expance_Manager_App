@@ -35,14 +35,14 @@ export const FetchTrans = async (token) =>{
 }
 
 // Update Transaction
-const update = async (_id , token) =>{
+const update = async (id, updateDate, token) =>{
     const options = {
         headers : {
 authorization : `Bearer ${token}`
         }
     }
-    const response = await axios.put(`${API_URL}/${_id}` , options)
-    localStorage.setItem("Auth" , JSON.stringify(response.data))
+    const response = await axios.put(`${API_URL}/${id}`, updateDate, options)
+    // localStorage.setItem("Auth" , JSON.stringify(response.data))
     return await response.data
 }
 

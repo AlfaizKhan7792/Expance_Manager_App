@@ -5,6 +5,7 @@ const TransSlice = createSlice({
     name: "Trans",
     initialState: {
         All_Trans: [],
+        Edit : {trans : {}, isEdit : false},
         isLoading: false,
         isSuccess: false,
         isError: false,
@@ -19,6 +20,12 @@ const TransSlice = createSlice({
             } else {
                 state.All_Trans = state.All_Trans.filter(trans => trans._id !== action.payload);
             }
+        },
+        Update : (state , action) => {
+return {
+    ...state,
+    Edit : {trans : action.payload , isEdit : true}
+}
         },
         restore : (state , action) =>{
             return {
@@ -71,26 +78,32 @@ const TransSlice = createSlice({
             })
 
             // Update Transaction
-            // .addCase(UpdateTrans.pending, (state) => {
-            //     state.isLoading = true;
-            //     state.isSuccess = false;
-            //     state.isError = false;
-            // })
-            // .addCase(UpdateTrans.fulfilled, (state, action) => {
-            //     state.isLoading = false;
-            //     state.isSuccess = true;
-            //     const updatedIndex = state.All_Trans.findIndex(trans => trans._id === action.payload);
-            //     if (updatedIndex !== -1) {
-            //         state.All_Trans[updatedIndex] = action.payload;
-            //     }
-            //     state.isError = false;
-            // })
-            // .addCase(UpdateTrans.rejected, (state, action) => {
-            //     state.isLoading = false;
-            //     state.isSuccess = false;
-            //     state.isError = true;
-            //     state.message = action.payload || "Failed to update transaction";
-            // })
+            .addCase(UpdateTrans.pending, (state) => {
+                state.isLoading = true;
+                state.isSuccess = false;
+                state.isError = false;
+            })
+            .addCase(UpdateTrans.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                // const updatedIndex = state.All_Trans.findIndex(trans => trans._id === action.payload);
+                // if (updatedIndex !== -1) {
+                //     state.All_Trans[updatedIndex] = action.payload;
+                // }
+                if (Array.isArray(state.All_Trans)) {
+                    state.All_Trans = state.All_Trans.map(item =>
+                      item._id === action.payload._id ? action.payload : item
+                    );
+                  }
+                state.Edit = {trans : {}, isEdit : false}
+                state.isError = false;
+            })
+            .addCase(UpdateTrans.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = false;
+                state.isError = true;
+                state.message = action.payload || "Failed to update transaction";
+            })
 
             // Delete Transaction
             .addCase(DeleteTrans.pending, (state) => {
@@ -140,16 +153,16 @@ export const GetTrans = createAsyncThunk("FETCH/TRANS", async (_, thunkAPI) => {
 });
 
 // Update Transaction Thunk
-// export const UpdateTrans = createAsyncThunk("UPDATE/TRANS", async (id, thunkAPI) => {
-//     const token = thunkAPI.getState().Auth?.All_Users?.token;
-//     if (!token) return thunkAPI.rejectWithValue("Token is missing");
-//     try {
-//         return await transService.update(id, token);
-//     } catch (error) {
-//         const message = error.response?.data?.message || "Failed to update transaction";
-//         return thunkAPI.rejectWithValue(message);
-//     }
-// });
+export const UpdateTrans = createAsyncThunk("UPDATE/TRANS", async (id, thunkAPI) => {
+    const token = thunkAPI.getState().Auth?.All_Users?.token;
+    if (!token) return thunkAPI.rejectWithValue("Token is missing");
+    try {
+        return await transService.update(id, token);
+    } catch (error) {
+        const message = error.response?.data?.message || "Failed to update transaction";
+        return thunkAPI.rejectWithValue(message);
+    }
+});
 
 // Delete Transaction Thunk
 export const DeleteTrans = createAsyncThunk("DELETE/TRANS", async (id, thunkAPI) => {

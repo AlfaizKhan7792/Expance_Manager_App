@@ -178,8 +178,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-// import IncomeList from "../components/IncomeList";
-// import ExpenseList from "../components/ExpenseList";
 import BackButton from "../components/BackButton";
 import { useDispatch, useSelector } from "react-redux";
 import { GetTrans } from "../features/Transaction/TransSlice";
