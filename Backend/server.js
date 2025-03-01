@@ -17,12 +17,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 
 
-app.get("/api/user" , (req,res) =>{
-res.json({
-    message : "Welcome to Expance Manager API 1.0"
-})
-})
-
 // User ROutes
 app.use("/api/user" , require("./routes/auth/AuthRoutes"))
 
@@ -40,11 +34,20 @@ app.get("*", (req,res) =>
     res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
 );
 }else{
-    const __dirname = path.resolve()
-    app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
-    app.get("/", (req,res) =>{
-        res.send("API is Running...")
+    // const __dirname = path.resolve()
+    // app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
+    // app.get("/", (req,res) =>{
+    //     res.send("API is Running...")
+    // })
+    
+    
+app.get("/" , (req,res) =>{
+    res.json({
+        message : "Welcome to Expance Manager API 1.0"
     })
+    })
+
+
 }
 
 // Error Handler
