@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = "/api/trans"
+const API_URL = "https://expance-manager-app.onrender.com/api/trans"
 
 // Add Transaction
 export const Add = async (finalData , token) =>{
@@ -25,7 +25,7 @@ export const FetchTrans = async (token) =>{
             authorization : `Bearer ${token}`
         }
     }
-    const response = await axios.get(`/api/trans/user-data` , options)
+    const response = await axios.get(`$${API_URL}/user-data` , options)
     localStorage.setItem("Auth" , JSON.stringify(response.data))
     // console.log(response.data);
     return await response.data
