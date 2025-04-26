@@ -1,21 +1,27 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { DeleteTrans, Remove, UpdateTrans } from "../features/Transaction/TransSlice";
+import { DeleteTrans, Remove, Update } from "../features/Transaction/TransSlice";
+import { useNavigate } from "react-router-dom";
+import { OctagonX, PencilIcon } from "lucide-react";
 
 const TotalExpanse = ({expanceList}) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleDelete = (id) =>{
     dispatch(DeleteTrans(id))
     dispatch(Remove(id))
   }
 
-  const handleEdit = (id) =>{
-    dispatch(UpdateTrans(id))
+  const handleEdit = (id) => {
+    const data = expanceList.find(item => item._id === id);
+    dispatch(Update(data));
+    navigate("/add-transaction");
   }
   
+  
 
-  if(expanceList.length === 0){
+  if(expanceList?.length === 0){
     return( <h1 className="text-center text-white text-2xl">No Income Yet!!</h1>)
   }
 
@@ -40,14 +46,14 @@ const TotalExpanse = ({expanceList}) => {
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
                 
               >
-                Edit
+                <PencilIcon />
               </button>
               <button
               onClick={() => handleDelete(expense._id)}
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
                 
               >
-                Delete
+                <OctagonX />
               </button>
             </div>
           </li>

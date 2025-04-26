@@ -30,6 +30,7 @@ return {
         restore : (state , action) =>{
             return {
                 All_Trans: [],
+                Edit : {trans : {}, isEdit : false},
                 isLoading: false,
                 isSuccess: false,
                 isError: false,
@@ -83,21 +84,33 @@ return {
                 state.isSuccess = false;
                 state.isError = false;
             })
+            // .addCase(UpdateTrans.fulfilled, (state, action) => {
+            //     state.isLoading = false;
+            //     state.isSuccess = true;
+            //     // const updatedIndex = state.All_Trans.findIndex(trans => trans._id === action.payload);
+            //     // if (updatedIndex !== -1) {
+            //     //     state.All_Trans[updatedIndex] = action.payload;
+            //     // }
+            //     if (Array.isArray(state.All_Trans)) {
+            //         state.All_Trans = state.All_Trans.map(item =>
+            //           item._id === action.payload._id ? action.payload : item
+            //         );
+            //       }
+            //     state.Edit = {trans : {}, isEdit : false}
+            //     state.isError = false;
+            // })
+
             .addCase(UpdateTrans.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                // const updatedIndex = state.All_Trans.findIndex(trans => trans._id === action.payload);
-                // if (updatedIndex !== -1) {
-                //     state.All_Trans[updatedIndex] = action.payload;
-                // }
-                if (Array.isArray(state.All_Trans)) {
-                    state.All_Trans = state.All_Trans.map(item =>
-                      item._id === action.payload._id ? action.payload : item
-                    );
-                  }
-                state.Edit = {trans : {}, isEdit : false}
-                state.isError = false;
-            })
+                state.message = "Transaction updated successfully";
+          
+                state.All_Trans.transactions = state?.All_Trans?.transactions?.map(trans =>
+                    trans._id === action.payload?._id ? action.payload : trans
+                  );
+                  state.Edit = { isEdit: false, trans: {} }; // Clear edit mode
+              })
+
             .addCase(UpdateTrans.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = false;
@@ -125,7 +138,7 @@ return {
             })
     },
 });
-export const { Remove , restore } = TransSlice.actions;
+export const { Remove , restore , Update } = TransSlice.actions;
 export default TransSlice.reducer;
 
 // Add Transaction Thunk
@@ -153,16 +166,35 @@ export const GetTrans = createAsyncThunk("FETCH/TRANS", async (_, thunkAPI) => {
 });
 
 // Update Transaction Thunk
+// export const UpdateTrans = createAsyncThunk("UPDATE/TRANS", async (id, thunkAPI) => {
+//     const token = thunkAPI.getState().Auth?.All_Users?.token;
+//     if (!token) return thunkAPI.rejectWithValue("Token is missing");
+//     try {
+//         return await transService.update(id, token);
+//     } catch (error) {
+//         const message = error.response?.data?.message || "Failed to update transaction";
+//         return thunkAPI.rejectWithValue(message);
+//     }
+// });
+
+
+
 export const UpdateTrans = createAsyncThunk("UPDATE/TRANS", async (id, thunkAPI) => {
     const token = thunkAPI.getState().Auth?.All_Users?.token;
+    const updateData = thunkAPI.getState().Trans?.Edit?.trans;
+    // console.log(updateData)
+  
     if (!token) return thunkAPI.rejectWithValue("Token is missing");
+    if (!updateData) return thunkAPI.rejectWithValue("No data to update");
+  
     try {
-        return await transService.update(id, token);
+      return await transService.update(id, updateData, token);
     } catch (error) {
-        const message = error.response?.data?.message || "Failed to update transaction";
-        return thunkAPI.rejectWithValue(message);
+      const message = error.response?.data?.message || "Failed to update transaction";
+      return thunkAPI.rejectWithValue(message);
     }
-});
+  });
+  
 
 // Delete Transaction Thunk
 export const DeleteTrans = createAsyncThunk("DELETE/TRANS", async (id, thunkAPI) => {
@@ -170,7 +202,6 @@ export const DeleteTrans = createAsyncThunk("DELETE/TRANS", async (id, thunkAPI)
     if (!token) return thunkAPI.rejectWithValue("Token is missing");
 
     try {
-        console.log(id);
         localStorage.removeItem("user._id")
       return await transService.deleteTransaction(id, token);
         // return _id; // ✅ Delete ke baad frontend state se bhi hatao

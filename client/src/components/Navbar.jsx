@@ -4,6 +4,7 @@ import { LogoutUser } from "../features/Auth/AuthSlice";
 import LoadingPage from "../pages/LoadingPage";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { LogOutIcon } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,7 +66,7 @@ const Navbar = () => {
           Register
         </button></Link>
        </> : <><button type="submit" onClick={handleExit} className="px-4 py-2 bg-[#800020] text-white font-semibold rounded-lg hover:bg-[#a41c30] focus:outline-none focus:ring-2 focus:ring-[#800020] transition">
-            Logout
+            <LogOutIcon />
           </button></>
          }
           

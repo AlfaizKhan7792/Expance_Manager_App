@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import { useDispatch, useSelector } from "react-redux";
-import { AddTrans } from "../features/Transaction/TransSlice";
+import { AddTrans, restore, Update, UpdateTrans } from "../features/Transaction/TransSlice";
 import LoadingPage from "./LoadingPage";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -10,7 +10,7 @@ const AddTransaction = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {All_Trans , isLoading , isErorr , message , isSuccess} = useSelector((state) => state.Trans)
+  const {All_Trans , Edit , isLoading , isErorr , message , isSuccess} = useSelector((state) => state.Trans)
 
   // State for AddTransaction fields
   const [transaction, setTransaction] = useState({
@@ -31,12 +31,24 @@ const AddTransaction = () => {
   const handleTransactionChange = (e) => {
     const { name, value } = e.target;
     setTransaction({ ...transaction, [name]: value });
+   if(Edit.isEdit){
+    dispatch(Update({
+      ...Edit?.trans,
+      [name]: value,  // Update specific field in Edit.trans
+  }))
+   }
   };
 
   // Handle Second Form input changes
   const handleExtraDetailsChange = (e) => {
     const { name, value } = e.target;
     setExtraDetails({ ...extraDetails, [name]: value });
+   if(Edit.isEdit){
+    dispatch(Update({
+      ...Edit?.trans,
+      [name] : value,
+    }))
+   }
   };
 
   // Handle Second Form submission
@@ -52,29 +64,51 @@ const AddTransaction = () => {
       ...transaction,
       ...extraDetails,
     };
-    // console.log("Final: ", finalData);
 
-    dispatch(AddTrans(finalData));
+    if (Edit?.isEdit) {
+      dispatch(UpdateTrans({ id : Edit.trans._id , updateData : finalData}));
+dispatch(UpdateTrans(Edit.trans._id));
+navigate("/view-details")
+
+    } else {
+      dispatch(AddTrans(finalData));
+    }
+    
 
     // Reset state after submission
+    dispatch(restore())
     setTransaction({ name: "", amount: "" });
     setExtraDetails({ category1: "", type: "Credit" });
   };
 
   useEffect(() =>{
 
+    if (Edit?.isEdit) {
+      setTransaction({
+        name: Edit.trans.name || "",
+        amount: Edit.trans.amount || "",
+      });
+  
+      setExtraDetails({
+        category1: Edit.trans.category1 || "",
+        type: Edit.trans.type || "Credit",
+      });
+    
+    }
+
     if(All_Trans && isSuccess){
-      navigate("/view-details")    
+      if (!Edit?.isEdit) {
+        navigate("/view-details");
+        dispatch(restore())
+      }  
     }
 
     if(isErorr && message){
       toast.error(message)
     }
 
-    setTransaction()
-
   
-  },[All_Trans , isSuccess, isErorr , message])
+  },[All_Trans , isSuccess, isErorr , message , Edit])
 
   if(isLoading){
     return <LoadingPage />
