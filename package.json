@@ -6,8 +6,8 @@
     "main": "node backend/server.js",
     "dev": "nodemon backend/server.js",
     "lit": "npm run dev --prefix client",
-    "start": "concurrently \"npm run dev\" \"npm run lit\"",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client"
+    "start": "concurrently \"npm run dev\" \"npm run lit\""
+    // "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -19,7 +19,6 @@
     "express": "^4.21.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
-    "lucide-react": "^0.503.0",
     "mongoose": "^8.9.5"
   },
   "devDependencies": {
