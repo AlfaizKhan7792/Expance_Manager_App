@@ -25,7 +25,6 @@ const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form data submitted:", formData);
     dispatch(RegisterUser(formData))
   };
 

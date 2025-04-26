@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../features/Auth/AuthSlice";
-import LoadingPage from "../pages/LoadingPage";
-import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LogOutIcon } from "lucide-react";
 
 const Navbar = () => {

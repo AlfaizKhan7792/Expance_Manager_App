@@ -25,7 +25,6 @@ const LoginPage = () => {
 
     const handleSubmit = (e) =>{
 e.preventDefault()
-console.log(formData);
 dispatch(LoginUser(formData))
     }
 
