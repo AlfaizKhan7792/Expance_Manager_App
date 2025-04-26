@@ -1,4 +1,4 @@
-import { CircleArrowLeftIcon } from 'lucide-react'
+// import { CircleArrowLeftIcon } from 'lucide-react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -10,7 +10,8 @@ const BackButton = ({url}) => {
               title='Go_Back'
               className=" bg-[#800020] text-white font-semibold rounded-lg hover:bg-[#a41c30] focus:outline-none focus:ring-2 focus:ring-[#800020] transition"
             >
-              <CircleArrowLeftIcon />
+              {/* <CircleArrowLeftIcon /> */}
+              Go_Back
             </Link>
           </div>
   )

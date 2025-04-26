@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { DeleteTrans, Remove, Update } from "../features/Transaction/TransSlice";
 import { useNavigate } from "react-router-dom";
-import { OctagonX, PencilIcon } from "lucide-react";
+// import { OctagonX, PencilIcon } from "lucide-react";
 
 const TotalIncome = ({incomeList}) => {
   const dispatch = useDispatch()
@@ -43,13 +43,15 @@ const TotalIncome = ({incomeList}) => {
               onClick={() => handleEdit(item._id)}
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
               >
-                <PencilIcon />
+                {/* <PencilIcon /> */}
+                Edit
               </button>
               <button
               onClick={() => handleDelete(item._id)}
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
               >
-                <OctagonX />
+                {/* <OctagonX /> */}
+                Delete
               </button>
             </div>
           </li>

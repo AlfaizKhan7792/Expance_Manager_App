@@ -6,8 +6,8 @@
     "main": "node backend/server.js",
     "dev": "nodemon backend/server.js",
     "lit": "npm run dev --prefix client",
-    "start": "concurrently \"npm run dev\" \"npm run lit\""
-    // "build": "npm install && npm install --prefix client && npm run build --prefix client"
+    "start": "concurrently \"npm run dev\" \"npm run lit\"",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
