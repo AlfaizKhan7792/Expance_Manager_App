@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { DeleteTrans, Remove, Update } from "../features/Transaction/TransSlice";
 import { useNavigate } from "react-router-dom";
-import { OctagonX, PencilIcon } from "lucide-react";
+import { Octagon, PencilIcon } from "lucide-react";
 
 const TotalExpanse = ({expanceList}) => {
   const dispatch = useDispatch()
@@ -53,7 +53,7 @@ const TotalExpanse = ({expanceList}) => {
                 className="px-3 py-1 text-sm font-medium text-white bg-[#800020] rounded-md hover:bg-[#a41c30]"
                 
               >
-                <OctagonX />
+                <Octagon />
               </button>
             </div>
           </li>
