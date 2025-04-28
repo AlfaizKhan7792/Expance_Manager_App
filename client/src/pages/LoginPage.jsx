@@ -96,9 +96,9 @@ if(isError && message){
               </form>
               <p className="text-center mt-4">
                 Don't have an account?{" "}
-                <a href="/register" className="text-[#800020] font-semibold hover:underline">
+                <Link to="/register" className="text-[#800020] font-semibold hover:underline">
                   Register here
-                </a>
+                </Link>
               </p>
             </div>
           </div>
