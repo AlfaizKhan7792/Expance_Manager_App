@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
 import { RegisterUser } from "../features/Auth/AuthSlice";
 
@@ -137,9 +137,9 @@ return <LoadingPage />
         </form>
         <p className="text-center mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-[#800020] font-semibold hover:underline">
+          <Link to="/login" className="text-[#800020] font-semibold hover:underline">
             Login here
-          </a>
+          </Link>
         </p>
       </div>
     </div>
