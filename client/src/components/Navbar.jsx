@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LogOutIcon from "lucide-react"
 import { LogoutUser } from "../features/Auth/AuthSlice";
 import { Link } from "react-router-dom";
+import { LogOut } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,7 +64,7 @@ const Navbar = () => {
           Register
         </button></Link>
        </> : <><button type="submit" onClick={handleExit} className="px-4 py-2 bg-[#800020] text-white font-semibold rounded-lg hover:bg-[#a41c30] focus:outline-none focus:ring-2 focus:ring-[#800020] transition">
-            <LogOutIcon />
+            <LogOut />
           </button></>
          }
           
