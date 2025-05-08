@@ -26,4 +26,27 @@ const GetAllTrans = expressAsyncHandler(async (req,res) =>{
 })
 
 
-module.exports = {GetAllTrans , GetAllUsers}
+// Fetch Single User
+const GetUserTrans = expressAsyncHandler(async (req, res) => {
+    const user = await Auth.findById(req.params.id);
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+
+    const allTran = await Trans.find({ user: user._id });
+
+    console.log("Found Transactions:", allTran.length);
+
+    if (!allTran || allTran.length === 0) {
+        res.status(404);
+        throw new Error("No Transactions Found for This User!");
+    }
+
+    res.status(200).json(allTran);
+});
+
+
+
+
+module.exports = {GetAllUsers , GetAllTrans , GetUserTrans}

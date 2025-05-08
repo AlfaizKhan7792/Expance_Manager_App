@@ -35,6 +35,9 @@ app.use("/api/user" , require("./routes/auth/AuthRoutes"))
 // Transactoin Routes
 app.use("/api/trans" , require("./routes/AddTransaction/AddTransactionRoutes"))
 
+// Admin Routes
+app.use("/api/admin", require("./routes/Admin/AdminRoutes"))
+
 
 // Diployment Code in render
 // if(process.env.NODE_ENV === "production"){
