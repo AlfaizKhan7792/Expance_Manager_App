@@ -1,4 +1,3 @@
-import React from 'react'
 import useAuthStatus from '../Hooks/useAuthStatus'
 import LoadingPage from '../pages/LoadingPage'
 import { Navigate, Outlet } from 'react-router-dom'

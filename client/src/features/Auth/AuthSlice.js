@@ -15,7 +15,7 @@ const AuthSlice = createSlice({
     reducers : {},
     extraReducers : (builder) =>{
         builder
-        .addCase(RegisterUser.pending , (state, action) =>{
+        .addCase(RegisterUser.pending , (state) =>{
 state.isLoading = true
 state.isSuccess = false
 state.isError = false
@@ -34,7 +34,7 @@ state.isError = false
                                 })
 
 
-                                .addCase(LoginUser.pending , (state, action) =>{
+                                .addCase(LoginUser.pending , (state) =>{
                                     state.isLoading = true
                                     state.isSuccess = false
                                     state.isError = false
@@ -51,7 +51,7 @@ state.isError = false
                                                             state.isError = true
                                                             state.message = action.payload
                                                                     })
-                                                                    .addCase(LogoutUser.fulfilled , (state, action) =>{
+                                                                    .addCase(LogoutUser.fulfilled , (state) =>{
                                                                         state.isLoading = false
                                                                         state.isSuccess = false
                                                                         state.isError = false

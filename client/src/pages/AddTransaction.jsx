@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
 import { useDispatch, useSelector } from "react-redux";
 import { AddTrans, restore, Update, UpdateTrans } from "../features/Transaction/TransSlice";
@@ -176,7 +176,7 @@ navigate("/view-details")
               onClick={() => setIsSecondFormOpen(true)}
               className="px-6 py-3 bg-[#800020] mb-3 text-white font-semibold rounded-lg hover:bg-[#a41c30] focus:outline-none focus:ring-2 focus:ring-[#800020] transition"
             >
-              Add Category's
+              Add Categorys
             </button>
           </div>
 

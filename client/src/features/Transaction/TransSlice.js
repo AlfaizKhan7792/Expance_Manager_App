@@ -27,7 +27,7 @@ return {
     Edit : {trans : action.payload , isEdit : true}
 }
         },
-        restore : (state , action) =>{
+        restore : () =>{
             return {
                 All_Trans: [],
                 Edit : {trans : {}, isEdit : false},

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
 import { useDispatch, useSelector } from "react-redux";
@@ -95,7 +95,7 @@ if(isError && message){
                 </div>
               </form>
               <p className="text-center mt-4">
-                Don't have an account?{" "}
+                Dont have an account?{" "}
                 <Link to="/register" className="text-[#800020] font-semibold hover:underline">
                   Register here
                 </Link>

@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { DeleteTrans, Remove, Update } from "../features/Transaction/TransSlice";
 import { useNavigate } from "react-router-dom";

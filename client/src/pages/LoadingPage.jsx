@@ -1,5 +1,3 @@
-import React from "react";
-
 const LoadingPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFFFF0] to-[#666666] text-[#333333] flex flex-col items-center justify-center">

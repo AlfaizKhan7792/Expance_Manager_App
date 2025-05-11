@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -13,6 +13,8 @@ const HomePage = () => {
   useEffect(() => {
     if (!All_Users) {
       navigate("/login");
+    }else if(All_Users.admin){
+navigate("/dashboard")
     } else {
       navigate("/");
     }
@@ -27,6 +29,7 @@ const HomePage = () => {
   }
 
   return (
+  <>
     <div
       className=" w-full bg-cover bg-center bg-no-repeat"
       style={{
@@ -51,6 +54,9 @@ const HomePage = () => {
         </Link>
       </div>
     </div>
+
+  </>
+
   );
 };
 
